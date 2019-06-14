@@ -1,0 +1,39 @@
+<mat-toolbar>  
+    <mat-toolbar-row>
+      <span>fake to do</span> 
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="container">
+    <div class="checkbox">
+      <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+        <mat-checkbox class="example-box" *ngFor="let data of datas" [(ngModel)]="data.checked" cdkDrag>
+          id : {{ data._id }}
+          description : {{ data.description }}
+          date : {{ data.date | date:'medium' }}
+          {{ data.checked }}
+        </mat-checkbox>
+      </div>
+    </div>
+
+    <form #myForm="ngForm" class="form">
+
+      <mat-form-field class="full-width">
+        <input #descriptionModel="ngModel" matInput placeholder="Description" required minlength="5" name="description" [(ngModel)]="description">
+        <mat-error *ngIf="descriptionModel?.errors?.required">This field is required</mat-error>
+        <mat-error *ngIf="descriptionModel?.errors?.minlength">You must type at least {{descriptionModel?.errors.minlength.requiredLength}} characters</mat-error>       
+      </mat-form-field>
+      
+      <mat-form-field>
+        <input #dateModel="ngModel" matInput [matDatepicker]="picker" placeholder="Choose a date" required name="date" [(ngModel)]="date">
+        <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="dateModel?.errors?.required">This field is required</mat-error>
+      </mat-form-field>
+
+      <button mat-button (click)="pushData()" [disabled]="myForm.invalid">Add Task</button>
+      <button mat-button (click)="myForm.resetForm()">Cancel</button>
+
+    </form>
+    <!--{{ descriptionModel.errors | json}}-->
+</div>
