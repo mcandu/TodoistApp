@@ -15,6 +15,9 @@ import { FormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { HttpClientModule } from '@angular/common/http';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +36,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatNativeDateModule,
     FormsModule,
     MatMenuModule,
-    DragDropModule
+    HttpClientModule,
+    DragDropModule,
+    MatPaginatorModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

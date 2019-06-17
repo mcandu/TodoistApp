@@ -7,7 +7,7 @@
 <div class="container">
     <div class="checkbox">
       <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-        <mat-checkbox class="example-box" *ngFor="let data of datas" [(ngModel)]="data.checked" cdkDrag>
+        <mat-checkbox class="example-box" *ngFor="let data of datas | async" [(ngModel)]="data.checked" cdkDrag>
           id : {{ data._id }}
           description : {{ data.description }}
           date : {{ data.date | date:'medium' }}
@@ -35,5 +35,6 @@
       <button mat-button (click)="myForm.resetForm()">Cancel</button>
 
     </form>
+    
     <!--{{ descriptionModel.errors | json}}-->
 </div>
